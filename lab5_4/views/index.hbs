@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список электронных книг</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+<h1>Список электронных книг</h1>
+<p><a href="ebook/create">Добавить электронную книгу</a></p>
+<table>
+    <tr><th>Размер экрана</th><th>Разрешение экрана</th><th>Тип экрана</th><th>Память</th><th></th></tr>
+    {{#each ebooks}}
+        <tr>
+            <td>{{this.screenSize}}</td>
+            <td>{{this.screenResolution}}</td>
+            <td>{{this.screenType}}</td>
+            <td>{{this.flashMemory}}</td>
+            <td>
+                <a href="ebook/edit/{{this.id}}">Edit</a>|
+                <form action="ebook/delete/{{this.id}}" method="POST" style="display:inline;">
+                    <input type="submit" value="Delete" />
+                </form>
+            </td>
+        </tr>
+    {{/each}}
+</table>
+</body>
+<html>

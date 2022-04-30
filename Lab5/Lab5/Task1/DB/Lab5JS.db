@@ -1,0 +1,38 @@
+--
+-- File generated with SQLiteStudio v3.3.3 on Wed Apr 6 13:03:57 2022
+--
+-- Text encoding used: System
+--
+PRAGMA foreign_keys = off;
+BEGIN TRANSACTION;
+
+-- Table: Customers
+CREATE TABLE Customers
+(
+	Id INTEGER NOT NULL PRIMARY KEY,
+	FirstName NVARCHAR(50) NOT NULL,
+	LastName NVARCHAR(60) NOT NULL,
+	Age INTEGER NOT NULL,
+	Phone NVARCHAR(30) NOT NULL,
+	CustomerAddress NVARCHAR(100) NOT NULL,
+	CustomerStatus NVARCHAR(30) NOT NULL
+);
+INSERT INTO Customers (Id, FirstName, LastName, Age, Phone, CustomerAddress, CustomerStatus) VALUES (1, 'Nikita', 'Lazovoi', 18, '+375299876544', 'str. Molovich, h.12', 'Base');
+INSERT INTO Customers (Id, FirstName, LastName, Age, Phone, CustomerAddress, CustomerStatus) VALUES (2, 'Vladimir', 'Dorovich', 30, '+375220001122', 'str. Kirichuk, h.109', 'Base');
+INSERT INTO Customers (Id, FirstName, LastName, Age, Phone, CustomerAddress, CustomerStatus) VALUES (3, 'Nikolay', 'Pupkin', 44, '+375441112255', 'str. Victory, h.33', 'VIP');
+
+-- Table: CustomerTechnique
+CREATE TABLE CustomerTechnique (Id INTEGER NOT NULL PRIMARY KEY, CustomerId INTEGER NOT NULL REFERENCES Customers (Id) ON DELETE NO ACTION ON UPDATE NO ACTION, TechnicalName NVARCHAR (200) NOT NULL, DescriptionOfTheProblem NVARCHAR (100), CustomerTechniqueStatus NVARCHAR (30) NOT NULL);
+INSERT INTO CustomerTechnique (Id, CustomerId, TechnicalName, DescriptionOfTheProblem, CustomerTechniqueStatus) VALUES (1, 1, 'Motherboard ASRock B560M Pro4', NULL, 'Not repaired');
+INSERT INTO CustomerTechnique (Id, CustomerId, TechnicalName, DescriptionOfTheProblem, CustomerTechniqueStatus) VALUES (2, 2, 'Power unit Chieftec Proton BDF-1000C', 'Capacitor replacement', 'Renovated');
+INSERT INTO CustomerTechnique (Id, CustomerId, TechnicalName, DescriptionOfTheProblem, CustomerTechniqueStatus) VALUES (3, 2, 'HDD WD Caviar Blue 1TB (WD10EZEX)', NULL, 'Not repaired');
+INSERT INTO CustomerTechnique (Id, CustomerId, TechnicalName, DescriptionOfTheProblem, CustomerTechniqueStatus) VALUES (4, 3, 'Video card Palit GeForce RTX 3060 Dual 12GB GDDR6 NE63060019K9-190AD', 'Memory replacement', 'Renovated');
+
+-- Table: Orders
+CREATE TABLE Orders (Id INTEGER NOT NULL PRIMARY KEY, CustomerId INTEGER NOT NULL REFERENCES Customers (Id) ON DELETE NO ACTION ON UPDATE NO ACTION, OrderDate DATETIME NOT NULL, RepairId INTEGER NOT NULL, TotalRepairCost DECIMAL NOT NULL, Comment NVARCHAR (100));
+INSERT INTO Orders (Id, CustomerId, OrderDate, RepairId, TotalRepairCost, Comment) VALUES (1, 1, '2022-01-22T18:39:12', 1, 300, NULL);
+INSERT INTO Orders (Id, CustomerId, OrderDate, RepairId, TotalRepairCost, Comment) VALUES (2, 2, '2022-01-30T11:12:43', 2, 300, 'Excellent service. I advise everyone.');
+INSERT INTO Orders (Id, CustomerId, OrderDate, RepairId, TotalRepairCost, Comment) VALUES (3, 3, '2022-02-01T15:46:33', 3, 300, 'Terrible service. I will never repair anything here again.');
+
+COMMIT TRANSACTION;
+PRAGMA foreign_keys = on;

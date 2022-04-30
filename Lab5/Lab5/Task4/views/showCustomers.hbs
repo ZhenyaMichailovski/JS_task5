@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <meta charset="utf-8" />
+    </head>
+    <style>
+        .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+        .table {
+        width: 800px;
+        margin-bottom: 20px;
+        border: 1px solid #dddddd;
+        font-size: 35px;
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse; 
+        }
+        .table th {
+        font-weight: bold;
+        padding: 5px;
+        background: #efefef;
+        border: 1px solid #dddddd;
+        }
+        .table td {
+        border: 1px solid #dddddd;
+        padding: 5px;
+        }
+    </style>
+    <body>
+        <div class="box">
+            <div id="content">
+            <h1>Список Клиентов</h1>
+                <table class="table">
+                    <tr><th>Имя</th><th>Фамилия</th><th>Возраст</th><th>Номер телефона</th><th>Адресс</th><th>Статус</th></tr>
+                        {{#if customers}}
+                        {{#each customers}}
+                    <tr><td>{{this.FirstName}}</td><td>{{this.LastName}}</td><td>{{this.Age}}</td><td>{{this.Phone}}</td><td>{{this.CustomerAddress}}</td><td>{{this.CustomerStatus}}</td></tr>
+                        {{/each}}
+                        {{/if}}
+                        {{#if customer}}
+                    <tr><td>{{this.FirstName}}</td><td>{{this.LastName}}</td><td>{{this.Age}}</td><td>{{this.Phone}}</td><td>{{this.CustomerAddress}}</td><td>{{this.CustomerStatus}}</td></tr>
+                        {{/if}}
+                </table>
+            </div>
+        </div>
+    </body>
+<html>

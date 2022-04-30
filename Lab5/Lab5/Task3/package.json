@@ -1,0 +1,11 @@
+{
+  "name": "testapp",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "mocha Task3.js"
+  },
+  "devDependencies": {
+    "mocha": "^9.2.2",
+    "supertest": "^6.2.2"
+  }
+}

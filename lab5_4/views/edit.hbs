@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редактирование электронных книг</title>
+    <meta charset="utf-8" />
+    <style>.field{width:180px;}</style>
+</head>
+<body>
+<h1>Редактирование электронных книг</h1>
+<form method="POST">
+    <input type="hidden" name="id" value="{{ebook.id}}" />
+
+    <label>Размер экрана</label>
+    <input name="screenSize" value="{{ebook.screenSize}}"  class="field" /><br><br>
+
+    <label>Разрешение экрана</label>
+    <input name="screenResolution" value="{{ebook.screenResolution}}"  class="field" /><br><br>
+
+    <label>Тип экрана</label>
+    <input name="screenType" value="{{ebook.screenType}}"  class="field" /><br><br>
+
+    <label>Память</label>
+    <input name="flashMemory" value="{{ebook.flashMemory}}"  class="field" /><br><br>
+    <input type="submit" value="Отправить" />
+
+</form>
+<a href="/ebook">К списку электронных книг</a>
+</body>
+<html>
